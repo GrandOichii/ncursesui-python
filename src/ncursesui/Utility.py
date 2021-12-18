@@ -246,12 +246,12 @@ def drop_down_box(options: list, max_display_amount: int, y: int, x: int, choice
             options.pop(list_template.choice)
             indexes.pop(list_template.choice)
             if len(options) > max_display_amount:
-                if page_n == len(options) - max_display_amount + 1:
-                    page_n -= 1
+                if list_template.page_n == len(options) - max_display_amount + 1:
+                    list_template.page_n -= 1
                     list_template.choice -= 1
             else:
-                if page_n == 1:
-                    page_n = 0
+                if list_template.page_n == 1:
+                    list_template.page_n = 0
                     list_template.choice -= 1
                 if list_template.choice == len(options):
                     list_template.cursor -= 1
