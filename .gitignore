@@ -2,3 +2,5 @@ build
 dist
 .DS_Store
 .eggs
+__pycache__
+ncursesui.egg-info
