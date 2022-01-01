@@ -1,0 +1,5 @@
+setup.py
+src/ncursesui.egg-info/PKG-INFO
+src/ncursesui.egg-info/SOURCES.txt
+src/ncursesui.egg-info/dependency_links.txt
+src/ncursesui.egg-info/top_level.txt
