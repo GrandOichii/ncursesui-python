@@ -4,3 +4,5 @@ dist
 .eggs
 __pycache__
 ncursesui.egg-info
+test_*.py*
+run-tests.command

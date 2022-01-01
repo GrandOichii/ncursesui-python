@@ -39,7 +39,10 @@ color_regex = ''
 def _add_color_combination(f_color: str, b_color: str):
     global pair_i
     pair_i += 1
-    curses.init_pair(pair_i, cc[f_color], cc[b_color])
+    try:
+        curses.init_pair(pair_i, cc[f_color], cc[b_color])
+    except:
+        print('Can\'t add colors - screen is not initialized')
     color_pair_nums[f'{f_color}-{b_color}'] = pair_i
     f_colors.add(f_color)
     b_colors.add(b_color)
@@ -64,9 +67,10 @@ def _update_color_regex():
     color_regex = f'#(({f_colors_regex})-({b_colors_regex})|normal) ([^#]+)'
 
 def init_colors():
-    _add_color_combination('red', 'black')
-    _add_color_combination('green', 'black')
-    _add_color_combination('blue', 'black')
+    # basic colors
+    # _add_color_combination('red', 'black')
+    # _add_color_combination('green', 'black')
+    # _add_color_combination('blue', 'black')
 
     # generate regex
     _update_color_regex()
@@ -96,9 +100,6 @@ def get_percentages(values: list):
 
 def reverse_color_pair(color_pair: str):
     return '-'.join(color_pair.split('-')[::-1])
-
-def split_dict(d: dict):
-    return list(d.keys()), list(d.values())
 
 def calc_pretty_bars(amount: int, max_amount: int, bar_length: int):
     if max_amount == 0:
