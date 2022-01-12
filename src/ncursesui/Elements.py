@@ -117,7 +117,7 @@ class Menu:
         self.controls = {}
         self.display_tabs = False
 
-        self.tabs = []
+        self.tabs: list[MenuTab] = []
         self.selected_tab = 0
         self.tabs += [MenuTab(self.parent, 'MAIN TAB')]
 
@@ -453,18 +453,19 @@ class TextField(UIElement):
         self.cursor = 0
 
 class NumericLeftRight(UIElement):
-    def __init__(self, parent: Window, value: int, min_val: int, max_val: int):
+    def __init__(self, parent: Window, value: int, min_val: int, max_val: int, step: int=1):
         super().__init__(parent, '')
         self.min_val = min_val
         self.max_val = max_val
         self.value = value
+        self.step = step
 
     def handle_key(self, key: int):
         super().handle_key(key)
         if key == 261 and self.value < self.max_val: # LEFT
-            self.value += 1
+            self.value += self.step
         if key == 260 and self.value > self.min_val: # RIGHT
-            self.value -= 1
+            self.value -= self.step
 
     def draw_width(self):
         return len(str(self.max_val)) + 2

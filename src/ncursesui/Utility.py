@@ -1,7 +1,6 @@
 import curses
-import json
-from posixpath import dirname
 import re
+from posixpath import dirname
 from math import ceil
 from os import listdir
 from os.path import isfile
