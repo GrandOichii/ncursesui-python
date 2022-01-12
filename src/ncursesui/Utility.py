@@ -91,6 +91,9 @@ def pos_neg_int(n: int):
         return f'+{n}'
     return str(n)    
 
+def split_dict(d: dict) -> tuple[list, list]:
+    return list(d.keys()), list(d.values())
+
 def get_percentages(values: list):
     total = sum(values)
     if total == 0:

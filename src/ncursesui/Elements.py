@@ -14,6 +14,7 @@ class Window:
         self.HEIGHT, self.WIDTH = window.getmaxyx()
         self.current_menu = None
         self.running = True
+        self.recommended_height, self.recommended_width = 0, 0
         self.window.keypad(1)
         self.initUI()
 
@@ -21,12 +22,47 @@ class Window:
         return self.window
 
     def start(self):
+        # check if the screen is to small
+        self._adjust_window_size()
         while self.running:
             if self.current_menu:
                 self.current_menu.draw()
                 key = self.window.getch()
                 self.handle_key(key)
                 self.current_menu.handle_key(key)
+
+    def _adjust_window_size(self):
+        if self.recommended_height == 0 and self.recommended_width == 0:
+            return
+        l = 50
+        lines = [
+            '#magenta-black ' + 'ADJUST YOUR SCREEN SIZE'.center(l),
+            f'H: {self.HEIGHT}  W: {self.WIDTH}'.center(l)
+        ]
+        key = -1
+        while True:
+            h, w = self.window.getmaxyx()
+            # draw
+            y = h // 2 - len(lines) // 2
+            x = w // 2 - l // 2
+            for i in range(len(lines)):
+                put(self.window, y + i, x, lines[i])
+            # key processing
+            key = self.window.getch()
+            if key == 27: # ESC
+                break
+            # if key == 261: # LEFT
+            #     pass
+            # if key == 260: # RIGHT
+            #     pass
+            # if key == 259: # UP
+            #     pass
+            # if key == 258: # DOWN
+            #     pass
+            # clear
+            self.window.clear()
+        self.window.clear()
+        self.HEIGHT, self.WIDTH = self.window.getmaxyx()
 
     def exit(self):
         self.running = False
