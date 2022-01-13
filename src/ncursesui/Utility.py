@@ -325,7 +325,7 @@ def message_box(parent: 'UIElements.Window', message: str, choices: list=None, y
             if choice_id >= len(choices):
                 choice_id = 0
         if 'Cancel' in choices and key == 27: # ESC
-            win.clear()
+            win.erase()
             win.refresh()
             return 'Cancel'
         pos = 3
@@ -340,7 +340,7 @@ def message_box(parent: 'UIElements.Window', message: str, choices: list=None, y
         if key == 10:
             done = True
         draw_borders(win, border_color)
-    win.clear()
+    win.erase()
     win.refresh()
     return choices[choice_id]
 
@@ -437,7 +437,7 @@ def choose_file(parent, title: str, starting_directory: str='.'):
                     choice = 0
 
         # clear screen
-        window.clear()
+        window.erase()
 
 def show_controls_window(parent: 'UIElements.Window', controls: dict):
     # TO-DO: Add scrolling

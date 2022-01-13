@@ -60,8 +60,8 @@ class Window:
             # if key == 258: # DOWN
             #     pass
             # clear
-            self.window.clear()
-        self.window.clear()
+            self.window.erase()
+        self.window.erase()
         self.HEIGHT, self.WIDTH = self.window.getmaxyx()
 
     def exit(self):
@@ -158,7 +158,7 @@ class Menu:
 
     def draw(self):
         parent_window = self.get_window()
-        parent_window.clear()
+        parent_window.erase()
         draw_borders(parent_window, self.border_color_pair)
         put(parent_window, 1, 1, self.title)
         draw_separator(parent_window, 2, self.border_color_pair)
