@@ -85,7 +85,7 @@ class MenuTab:
     def draw(self):
         for element in self.elements:
             element.draw()
-            self.parent.get_window().refresh()
+            # self.parent.get_window().refresh()
 
     def handle_key(self, key: int):
         if len(self.elements) > 0:
